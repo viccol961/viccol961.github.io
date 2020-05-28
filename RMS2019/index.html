@@ -2,19 +2,121 @@
 
 <head>
     <title>Corrections RMS 2019</title>
+
+    <style>
+        .scrim{
+            position: absolute;
+            height: 100%; width: 100%;
+            background-color: #232F34;
+
+            opacity: 0.5;
+            -webkit-khtml: opacity 0.4;
+            -moz-khtml: opacity 0.4;
+            -ms-khtml: opacity 0.4;
+            -o-khtml: opacity 0.4;
+        }
+
+        #pdf_div{
+            position: absolute;
+            top: 0; left: 0;
+
+            width: 100%;
+            height: 100%;
+        }
+        #iframe_div{
+            z-index: 2;
+
+            position: absolute;
+            top: 5%; left: 5%;
+            width: 90%; height: 90%;
+        }
+        #pdf_iframe{
+            height: 100%; width: 100%;
+            border-radius: 10px;
+            box-shadow: -.3em .3em .3em #182024;
+        }
+
+        #iframe_button{
+            position: absolute;
+            right: calc(5% - 26px);
+            top: 5%;
+
+            transition: all .2s ease-in-out;
+        }
+        #iframe_button:hover{
+            transform: scale(1.3);
+        }
+
+        span.pdf{
+            display: block;
+            margin: 5px 0;
+            padding: 3px 5px;
+            width: fit-content;
+
+            background-color: #E5E7E9;
+            border-radius: 5px;
+            box-shadow: -.03em .03em .03em #424F56;
+
+            transition: all .1s ease-in-out;
+        }
+        span.pdf:hover{
+            transform: scale(1.1);
+        }
+    </style>
+
+    <script>
+        function onload() {
+            document.addEventListener("keydown", keyDown);
+            document.getElementById("pdf_iframe").contentWindow.document.addEventListener("keydown", parent.keyDown);
+        }
+
+        function openPDF(name) {
+            pdf_iframe = document.getElementById('pdf_iframe');
+            iframe_div = document.getElementById('pdf_div');
+
+            pdf_iframe.src = name;
+            iframe_div.style.display = "block";
+        }
+
+        function closePDF() {
+            pdf_iframe = document.getElementById('pdf_iframe');
+            iframe_div = document.getElementById('pdf_div');
+
+            pdf_iframe.src = "";
+            iframe_div.style.display = "none";
+        }
+
+        function keyDown(e) {
+            if (e.keyCode == 27) {
+                closePDF();
+            }
+        }
+    </script>
 </head>
 
-<body>
+<body onload="onload();">
     <h2>Corrections RMS 2019</h2>
-    <a href="RMS2019.pdf">Tous les corrigés</a>
+    <span class="pdf" onclick="openPDF('RMS2019.pdf');">Tous les corrigés</span>
+
     <h3>X MP</h3>
-    <a href="228.pdf">Exercice 228</a><br>
-    <a href="237.pdf">Exercice 237</a><br>
-	<a href="249.pdf">Exercice 249</a><br>
-    <a href="251.pdf">Exercice 251</a><br>
-    <a href="254.pdf">Exercice 254</a><br>
-    <a href="260.pdf">Exercice 260</a><br>
-    <a href="273.pdf">Exercice 273</a>
+    <span class="pdf" onclick="openPDF('228.pdf');">Exercice 228</span>
+    <span class="pdf" onclick="openPDF('237.pdf');">Exercice 237</span>
+    <span class="pdf" onclick="openPDF('249.pdf');">Exercice 249</span>
+    <span class="pdf" onclick="openPDF('251.pdf');">Exercice 251</span>
+    <span class="pdf" onclick="openPDF('254.pdf');">Exercice 254</span>
+    <span class="pdf" onclick="openPDF('260.pdf');">Exercice 260</span>
+    <span class="pdf" onclick="openPDF('273.pdf');">Exercice 273</span>
+
+
+    <div id="pdf_div" style="display: none;">
+        <div class="scrim"></div>
+        <div id="iframe_div">
+            <iframe id="pdf_iframe" src="" frameborder="0"></iframe>
+        </div>
+        <div id="iframe_button" onclick="closePDF();">
+            <img src="ressources/close.svg" alt="Close">
+        </div>
+    </div>
 </body>
 
 </html>
