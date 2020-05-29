@@ -105,13 +105,14 @@
     <span class="pdf" onclick="openPDF('249.pdf');">Exercice 249</span>
     <span class="pdf" onclick="openPDF('251.pdf');">Exercice 251</span>
     <span class="pdf" onclick="openPDF('254.pdf');">Exercice 254</span>
+    <span class="pdf" onclick="openPDF('255.pdf');">Exercice 255</span>
     <span class="pdf" onclick="openPDF('260.pdf');">Exercice 260</span>
     <span class="pdf" onclick="openPDF('273.pdf');">Exercice 273</span>
     <span class="pdf" onclick="openPDF('275.pdf');">Exercice 275</span>
 
 
     <div id="pdf_div" style="display: none;">
-        <div class="scrim"></div>
+        <div class="scrim" onclick="closePDF();"></div>
         <div id="iframe_div">
             <iframe id="pdf_iframe" src="" frameborder="0"></iframe>
         </div>
